@@ -59,7 +59,7 @@ pipeline {
     }
     // Template may be used to populate the environment
     // Not used here
-     stage('create') {
+ /*    stage('create') {
       steps {
         script {
             openshift.withCluster() {
@@ -69,7 +69,7 @@ pipeline {
             }
         }
       }
-    } 
+    } */
     // This stage is for building the application from git repository
     stage('build') {
       steps {
