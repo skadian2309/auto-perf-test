@@ -69,7 +69,7 @@ pipeline {
         script {
             openshift.withCluster() {
                 openshift.withProject() {
-                 perfReport sourceDataFiles: "request.jtl", compareBuildPrevious: true, modePerformancePerTestCase: true, modeOfThreshold: true, relativeFailedThresholdPositive: 50, relativeUnstableThresholdNegative: 40, relativeUnstableThresholdPositive: 40
+                 perfReport sourceDataFiles: "auto-perf-test/jenkins/request.jtl", compareBuildPrevious: true, modePerformancePerTestCase: true, modeOfThreshold: true, relativeFailedThresholdPositive: 50, relativeUnstableThresholdNegative: 40, relativeUnstableThresholdPositive: 40
  
       //            openshift.newApp(templatePath) 
                 }
