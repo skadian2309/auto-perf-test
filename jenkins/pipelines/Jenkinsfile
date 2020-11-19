@@ -23,12 +23,12 @@ pipeline {
             script {
                 openshift.withCluster() {
                     openshift.withProject("load-testing") {
-                      hook = registerWebhook()
+                   //   hook = registerWebhook()
 
-                      echo "Waiting for POST to ${hook.getURL()}"
-                      data = waitForWebhook hook
-                      echo "Webhook called with data: ${data}"
-                      echo "Using project: ${openshift.project()}"
+                   //   echo "Waiting for POST to ${hook.getURL()}"
+                  //    data = waitForWebhook hook
+                  //    echo "Webhook called with data: ${data}"
+                   //   echo "Using project: ${openshift.project()}"
                     }
                 }
             }
@@ -64,17 +64,20 @@ pipeline {
     }
     // Template may be used to populate the environment
     // Not used here
- /*    stage('create') {
+     stage('create') {
       steps {
         script {
             openshift.withCluster() {
                 openshift.withProject() {
-                  openshift.newApp(templatePath) 
+                  sh "pwd; ls -ltr; tree"
+                 perfReport sourceDataFiles: "jenkins/request.jtl", compareBuildPrevious: true, modePerformancePerTestCase: true, modeOfThreshold: true, relativeFailedThresholdPositive: 50, relativeUnstableThresholdNegative: 40, relativeUnstableThresholdPositive: 40
+ 
+      //            openshift.newApp(templatePath) 
                 }
             }
         }
       }
-    } */
+    } 
     // This stage is for building the application from git repository
     stage('build') {
       steps {
