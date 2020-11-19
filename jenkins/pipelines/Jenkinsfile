@@ -22,7 +22,7 @@ pipeline {
         steps {
             script {
                 openshift.withCluster() {
-                    openshift.withProject() {
+                    openshift.withProject("load-testing") {
                         echo "Using project: ${openshift.project()}"
                     }
                 }
@@ -32,29 +32,29 @@ pipeline {
     // The aim of this section is to make sure that the environment
     // has no left over. Delete and recreate provides confidence
     // and reproducibility.
-   // stage('cleanup') {
-    //  steps {
-     //   script {
-     //       openshift.withCluster() {
-      //          openshift.withProject() {
+    stage('cleanup') {
+      steps {
+        script {
+            openshift.withCluster() {
+                openshift.withProject("load-testing") {
                   // Deactivated for making demos quicker
                   /* openshift.selector("all", [ 'app' : 'camel-amq-fakeapp' ]).delete() */
                   // Secrets need to be addressed separately
                   /* if (openshift.selector("secrets", secretName).exists()) { 
                     openshift.selector("secrets", secretName).delete()
                   } */
-        //          if (openshift.selector("all", [ "testplan" : testPlanName ]).exists()) {
-        //              openshift.selector("all", [ "testplan" : testPlanName ]).delete()
-        //          }
-        //          if (openshift.selector("configMaps", [ "testplan" : testPlanName ]).exists()) {
-        //              openshift.selector("configMaps", [ "testplan" : testPlanName ]).delete()
-        //          }
+                  if (openshift.selector("all", [ "testplan" : testPlanName ]).exists()) {
+                      openshift.selector("all", [ "testplan" : testPlanName ]).delete()
+                  }
+                  if (openshift.selector("configMaps", [ "testplan" : testPlanName ]).exists()) {
+                      openshift.selector("configMaps", [ "testplan" : testPlanName ]).delete()
+                  }
                   /* openshift.selector("all", [ job-name : apt-jmeter ]).delete() */
-       //         }
-        //    }
-       // }
-    //  }
-   // }
+                }
+            }
+        }
+      }
+    }
     // Template may be used to populate the environment
     // Not used here
     /* stage('create') {
