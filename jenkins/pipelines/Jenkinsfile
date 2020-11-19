@@ -4,7 +4,7 @@ def testPlanName = 'apt-jmx'
 pipeline {
   agent {
     node {
-      label 'master'
+      label 'nodejs'
     }
   }
   environment {
