@@ -79,18 +79,18 @@ pipeline {
       }
     } 
     // This stage is for building the application from git repository
-    stage('build') {
+   /* stage('build') {
       steps {
         script {
             openshift.withCluster() {
                 openshift.withProject() {
                     // Deactivated for making demos quicker
                     /* def builds = openshift.selector("bc", 'camel-amq-fakeapp-s2i').startBuild("--wait=true") */
-                }
-            }
-        }
-      }
-    }
+        //        }
+        //    }
+       // }
+     // }
+   // }*/
     // This stage is provisioning the environment with specifics
     // This may include credentials and configMaps with endpoint information
     // A new deployment is started if no image change trigger is configured
