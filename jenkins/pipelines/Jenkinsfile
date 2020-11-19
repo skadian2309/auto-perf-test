@@ -10,13 +10,13 @@ pipeline {
   environment {
     JENKINS_URL = "https://jenkins-load-testing.apps.ocp4mcm-1603454788875.awssandbox.appopsonline.com"
   } 
-  // triggers {
+   triggers {
     // Execute the pipeline once a day with automated distribution.
-    // cron('H H * * *')
-  //}
-  //options {
-  //  timeout(time: 20, unit: 'MINUTES') 
-  //}
+     cron('H H * * *')
+  }
+  options {
+    timeout(time: 20, unit: 'MINUTES') 
+  }
   stages {
     stage('preamble') {
         steps {
@@ -59,7 +59,7 @@ pipeline {
     }
     // Template may be used to populate the environment
     // Not used here
-    /* stage('create') {
+     stage('create') {
       steps {
         script {
             openshift.withCluster() {
@@ -69,7 +69,7 @@ pipeline {
             }
         }
       }
-    } */
+    } 
     // This stage is for building the application from git repository
     stage('build') {
       steps {
@@ -92,7 +92,7 @@ pipeline {
     // This stage is for test execution
  
     // After tests have been successfully executed the image may be tagged accordingly
-    stage('tag') {
+    /*stage('tag') {
       steps {
         script {
             openshift.withCluster() {
@@ -102,7 +102,7 @@ pipeline {
             }
         }
       }
-    }
+    }*/
   }
 }
 
