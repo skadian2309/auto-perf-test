@@ -43,7 +43,9 @@ pipeline {
                   /* if (openshift.selector("secrets", secretName).exists()) { 
                     openshift.selector("secrets", secretName).delete()
                   } */
+                  echo "debug"
                   if (openshift.selector("all", [ "testplan" : testPlanName ]).exists()) {
+                      echo "debug1"
                       openshift.selector("all", [ "testplan" : testPlanName ]).delete()
                   }
                   if (openshift.selector("configMaps", [ "testplan" : testPlanName ]).exists()) {
