@@ -64,17 +64,19 @@ pipeline {
     }
     // Template may be used to populate the environment
     // Not used here
- /*    stage('create') {
+     stage('create') {
       steps {
         script {
             openshift.withCluster() {
                 openshift.withProject() {
-                  openshift.newApp(templatePath) 
+                 perfReport sourceDataFiles: "request.jtl", compareBuildPrevious: true, modePerformancePerTestCase: true, modeOfThreshold: true, relativeFailedThresholdPositive: 50, relativeUnstableThresholdNegative: 40, relativeUnstableThresholdPositive: 40
+ 
+      //            openshift.newApp(templatePath) 
                 }
             }
         }
       }
-    } */
+    } 
     // This stage is for building the application from git repository
     stage('build') {
       steps {
