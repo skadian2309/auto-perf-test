@@ -8,7 +8,7 @@ pipeline {
     }
   }
   environment {
-    JENKINS_URL = "http://jenkins"
+    JENKINS_URL = "https://jenkins-load-testing.apps.ocp4mcm-1603454788875.awssandbox.appopsonline.com"
   } 
   // triggers {
     // Execute the pipeline once a day with automated distribution.
