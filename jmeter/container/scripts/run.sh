@@ -25,6 +25,9 @@ if [ -n "${CALLBACK_URL}" ]; then
     curl -s -X POST -d "${HOSTNAME}" "${CALLBACK_URL}"
 fi
 
+
+curl  -v -u admin:admin123 https://nexus-repo-devops.apps.ocp4mcm-1603454788875.awssandbox.appopsonline.com/repository/jmeter-results/files/request.jtl --upload-file /opt/jmeter/results/${dir}/$(basename $TEST_FILE .jmx).jtl
+
 # An option would be to sleep for a few minutes to give Jenkins the chance to retrieve dashboard files through oc rsync
 # if persistent volumes can't be used
 # sleep 600
